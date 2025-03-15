@@ -17,8 +17,8 @@ export default function AddGoal() {
         id: Math.random().toString(),
         title,
         description,
-        targetTime: 0,
-        currentTime: 0,
+        targetTime,
+        currentTime,
       };
       addGoal(newGoal);
       setTitle("");

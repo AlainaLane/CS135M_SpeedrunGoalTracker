@@ -2,13 +2,11 @@ import React, { useContext } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
 import { GoalsContext } from "@/context/GoalsContext";
-import AddGoal from "@/components/AddGoal";
 import { StatusBar } from "expo-status-bar";
 
 export default function GoalList() {
   const { goals } = useContext(GoalsContext);
   const router = useRouter();
-  const goalMAX = 3;
 
   return (
     <View style={styles.container}>
@@ -30,6 +28,16 @@ export default function GoalList() {
           </View>
         ))} 
       </View>
+      <View style={styles.goalContainer}>
+        <TouchableOpacity
+          style={styles.goalTitleContainer}
+          onPress={() => router.push(`./goals/AddGoal`)}
+        >
+          <Text style={styles.goalText}>Add a Goal</Text>
+        </TouchableOpacity>
+      </View>
+      
+
     </View>
   );
 }
@@ -44,10 +52,10 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     padding: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: "#ddd",
-  },
-  goalTitleContainer: {
+    borderWidth: 1,
+    borderColor: "#ddd",
+    margin: 10,
+    backgroundColor: "#ccffff"
   },
   goalTimeContainer: {
     flexDirection: "column",

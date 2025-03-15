@@ -3,6 +3,10 @@ import GoalsProvider from "@/context/GoalsContext"
 import { useEffect } from "react";
 import * as SplashScreen from "expo-splash-screen";
 import { Quantico_400Regular, useFonts } from "@expo-google-fonts/quantico";
+import { DarkTheme, DefaultTheme, ThemeProvider, } from "@react-navigation/native";
+import { Tabs } from "expo-router";
+import { Colors } from "@/constants/colors"
+
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
@@ -20,16 +24,24 @@ export default function RootLayout() {
     }
     return (
       <GoalsProvider>
-        <Stack>
-          <Stack.Screen
+        <Tabs 
+          screenOptions={{
+            tabBarStyle: { backgroundColor: "#33ccff" },
+            tabBarActiveTintColor: "#111111",
+            tabBarInactiveTintColor: "#bbbbbb",
+            headerShown: false,
+            // headerTitleAlign: "center",
+          }}
+        >
+          <Tabs.Screen
             name="index"
-            options={{ title: "Speedrun Goal Tracker", headerShown: true }}
+            options={{ title: "Home", }}
           />
-          <Stack.Screen
-            name="goals/[id]"
-            options={{ title: "Speedrun Goal Tracker", headerShown: true }}
+          <Tabs.Screen
+            name="habits/[id]"
+            options={{ title: "Contact", }}
           />
-        </Stack>
+        </Tabs>
       </GoalsProvider>
     );
 }
